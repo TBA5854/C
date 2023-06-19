@@ -182,7 +182,7 @@ int main()
         break;
     case 3:
         leap_year();
-        break;;
+        break;
     case 4:
         vowel_check();
         break;
