@@ -8,7 +8,7 @@ Write a C program to count the number of even elements in an array.*/
 #include<stdio.h>
 int main()
 {
-    int r,i,c=0;
+    int r,i,ch,c=0;
     printf("Enter number of elements in the array :");
     scanf("%d",&r);
     int a[r];
@@ -56,8 +56,7 @@ int main()
     printf("No of even elements is %d",c);
     goto end;
     menu:
-    int ch;
-        printf("Welcome \n");
+    printf("Welcome \n");
     printf("Select the program\n");
    printf("1.Average the elements\n");
    printf("2.Reverse the array\n");
@@ -80,4 +79,5 @@ int main()
         break;
     }
     end:
+    return 0;
 }
