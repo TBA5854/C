@@ -23,8 +23,8 @@ int neg()
 }
 int sum()
 {
-    int o;
-    for (int i = 0; i <= 100; i++)
+    int o=0;
+    for (int i = 1; i <= 100; i++)
     {
         o+=i;;
     }
@@ -49,5 +49,27 @@ int pass_check()
 }
 int main()
 {
+    
+    int n1,n2;
+    char c;
+    printf("Welcome \n");
+    printf("Select the program\n");
+   printf("1.Negative\n");
+   printf("2.Num to 100\n");
+   printf("3.Passcode check\n") ;
+    int ch ;
+    printf("Enter your selection : ");
+    scanf(" %d",&ch);
+    switch (ch)
+    {
+    case 1:
+    neg();
+    break;
+    case 2:
+    sum();
+    break;
+    case 3:
     pass_check();
+    break;
+    }
 }
