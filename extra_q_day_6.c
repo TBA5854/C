@@ -40,11 +40,11 @@ int main()
     sum_of_odd:
     for (i = 0; i < sizeof(a)/4; i++)
     {
-        if (a[i]%2==1){
+        if (a[i]>0){
         c=c+a[i];
     }
     }
-    printf("Sum of all odd elements is %d",c);
+    printf("Sum of all +ve elements is %d",c);
     goto end;
     count_of_even:
     for (i = 0; i < sizeof(a)/4; i++)
@@ -60,7 +60,7 @@ int main()
     printf("Select the program\n");
    printf("1.Average the elements\n");
    printf("2.Reverse the array\n");
-   printf("3.Summ all odd numbers\n") ;
+   printf("3.Sum all +ve numbers\n") ;
    printf("4.Count number of even number\n");
     printf("Enter your selection : ");
     scanf(" %d",&ch);
