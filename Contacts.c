@@ -1,6 +1,8 @@
+#include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+
 int end()
 {
 		printf("\t\tThanks for Trying this program \n\n\t\t  A Program by TBA5854\n");
@@ -48,7 +50,7 @@ int back()
 	}
 	return 0;
 }
-int read()
+int read_c()
 {
     FILE *j;
     j=fopen("contacts.csv","r");
@@ -56,6 +58,11 @@ int read()
 	if (j==NULL)
 	{
 		printf("Oops , No contact file found...\nTry Appending some");
+		FILE *t;
+		t=fopen("contacts.csv","w");
+		fprintf(t,"SNO,NAME,PHONE_NUMBER\n");
+		fclose(t);
+		return 0;
 	}
 	
 	while (fscanf(j,"%c",buffer)!=EOF)
@@ -77,7 +84,7 @@ int read()
     fclose(j);
 	return 0;
 }
-int write()
+int writ_c()
 {
 	FILE *j;
     j=fopen("contacts.csv","a");
@@ -104,7 +111,7 @@ int write()
 }
 int del()
 {
-	read();
+	read_c();
 	printf("Enter the contact's sno to delete\n>>");
 	int sno;
 	scanf("%d",&sno);
@@ -271,14 +278,14 @@ int start()
 	{
 	case 1:
 	printf("\n\tRead Contacts\n\n");
-	read();
+read_c();
 	printf("\nOperation Comleted\n");
 	back();
 	start();
 	break;
 	case 2:
 	printf("\n\tAppend Contacts\n\n");
-	write();
+writ_c();
 	printf("\nOperation Comleted\n");
 	back();
 	start();
@@ -299,7 +306,7 @@ int start()
 	break;
 	case 5:
 	printf("\n\tDelete a Contact\n\n");
-	del();
+del();
 	printf("\nOperation Comleted\n");
 	back();
 	start();
@@ -367,5 +374,6 @@ int menu()
 }
 int main()
 {
+	//chdir("/storage/emulated/0/Documents/Cxxdroid");
 	menu();
 }
