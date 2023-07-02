@@ -9,6 +9,11 @@
 //Till done : read , write ,count,del in csv || info back menu done
 //now : work on other stuff
 //next : export vcf
+int end()
+{
+		printf("\t\tThanks for Trying this program \n\n\t\t  A Program by TBA5854\n");
+		exit(0);
+}
 int info()
 {
 	printf("1.This is a Contacts program\n");
@@ -43,7 +48,7 @@ int menu()
 	once++;
 	}
 	printf("\n\tMenu\n\n");
-	printf("Use the resources below and type 4 to start(Enter number to choose the option)\n");
+	printf("Use the resources below and type 4 to start(Enter number to choose the option)\n\n");
 	printf("1.Disclaimer\n");
 	printf("2.Info\n");
 	printf("3.Contact Developer\n");
@@ -93,36 +98,52 @@ int start()
 	printf("3.Count number of contacts saved\n");
 	printf("4.Export Contacts\n");
 	printf("5.Delete a contact\n");
-	printf("6.Exit\n");
+	printf("6.Go back to menu\n");
+	printf("7.Exit\n");
 	printf(">>");
 	int ch;
 	scanf (" %d",&ch);
 	switch (ch)
 	{
 	case 1:
-	printf("\n\tDisclaimer\n\n");
-	printf("-->This program works the best when\n the user follows instructions\n-->Check Info for instructions");
+	printf("\n\tRead Contacts\n\n");
+	read();
+	printf("\nOperation Comleted\n");
 	back();
-	menu();
+	start();
 	break;
 	case 2:
-	printf("\n\tInfo\n\n");
-	info();
+	printf("\n\tAppend Contacts\n\n");
+	write();
+	printf("\nOperation Comleted\n");
 	back();
-	menu();
+	start();
 	break;
 	case 3:
-	printf("\n\tContact Developer\n\n");
-	printf("For any querries or reporting bugs , contact TBA58584 via github or twitter\n");
-	printf("www.github.com/TBA5854\n");
-	printf("www.twitter.com/TBA5854\n");
+	printf("\n\tCount Contacts\n\n");
+    printf("Number of contacts are :%d",count());
+	printf("\nOperation Comleted\n");
 	back();
-	menu();
+	start();
 	break;
 	case 4:
+	printf("\n\tExport Contacts\n\n");
+	export_vcf();
+	printf("\nOperation Comleted\n");
+	back();
 	start();
 	break;
 	case 5:
+	printf("\n\tDelete a Contact\n\n");
+	del();
+	printf("\nOperation Comleted\n");
+	back();
+	start();
+	break;
+	case 6:
+	menu();
+	break;
+	case 7:
 	end();
 	default:
 	printf("Invalid input , program is exiting !!!");
@@ -150,8 +171,8 @@ int read()
 		}
 		
     }
-    
     fclose(j);
+	return 0;
 }
 int write()
 {
@@ -192,7 +213,6 @@ int count()
             c++;
         }
     }
-    printf("Number of contacts are :%d",c-1);
     fclose(j);
 	return c-1;
 }
@@ -275,17 +295,14 @@ int del()
 	fclose(j);
 	fclose(s);
 }
-int export_vcf()
+int name()
 {
-	read();
-	//printf("hi");
 	FILE *j;
     j=fopen("contacts.csv","r");
 	FILE *t;
     t=fopen("temp.csv","w");
 	char buffer[1];
 	int comma_count=0,nl_count=0;
-	printf("hi");
     while (fscanf(j,"%c",buffer)!=EOF)
 	{
 		while (nl_count==0)
@@ -322,11 +339,18 @@ int export_vcf()
 	}
 	fclose(j);
 	fclose(t);
-    j=fopen("temp.csv","r");
-	
-    t=fopen("temp1.csv","w");
+}
+int vcf_writer()
+{
+
+	FILE *j;
+	FILE *t;
 	char buffer1[50];
-	for (int i = 0; i < count(); i++)
+	printf("Enter file name for vcf\n>>");
+	scanf(" %s",buffer1);
+    j=fopen("temp.csv","r");
+    t=fopen(strcat(buffer1,".vcf"),"w");
+	for (int i = 0; i < 5; i++)
 	{
 		fprintf(t,"BEGIN:VCARD\nVERSION:2.1\nN:;");
 		//while (fscanf(j,"%c",buffer1)!="EOF")
@@ -345,13 +369,15 @@ int export_vcf()
 		fprintf(t,"\nEND:VCARD\n");
 		printf("\n\n\n..\n");
 	}
-		fclose(j);
+	fclose(j);
 	fclose(t);
+}
+int export_vcf()
+{
+	name();
+	vcf_writer();
 }
 int main()
 {
-//	write();
-	export_vcf();
-//	read();
-//	del(); 
+	menu();
 }
