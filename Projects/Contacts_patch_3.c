@@ -68,7 +68,7 @@ int read_c()
 		return 0;
 	}
 	
-	while (fscanf(j,"%c",buffer)!=EOF)
+	while (fscanf(j,"%s",buffer)!=EOF)
 	{
         if (strcmp(buffer,",")==0)
 		{
@@ -410,6 +410,17 @@ int menu()
 	exit(0);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 int main()
 {
 	//chdir("/storage/emulated/0/Documents/Cxxdroid");
